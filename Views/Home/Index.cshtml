@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class=" ">
+    
+    <h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Pojišťovna na kterou se můžete spolehnout</h1>
+    <div class="row pt-4 pb-5  border-bottom border-2 border-dark">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Cestovní pojištění</h5>
+                    <p class="card-text">Ideální pro Vaši dovolenou u moře, na horách nebo na cestě za poznáním.</p>
+                    <a class="dropdown-item text-primary" asp-area="" asp-controller="Home" asp-action="PojisteniCestovni">Sjednání cestovního pojištění</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 ">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Pojištění majetku</h5>
+                    <p class="card-text">Pojistěte si Váš dům, byt nebo chalupu. Kompletní pojištění domácnosti.</p>
+                    <a class="dropdown-item text-primary" asp-area="" asp-controller="Home" asp-action="PojisteniMajetku">Sjednání pojištění majetku</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Pojištění vozidel</h5>
+                    <p class="card-text">Pokud sedíte denně za volantem, je dobré být připraven na všechno.</p>
+                    <a class="dropdown-item text-primary" asp-area="" asp-controller="Home" asp-action="PojisteniVozidel">Sjednání pojištění vozidel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-center mt-5 mb-5 ">
+        <div class="card-header">
+            Nastala Vám škoda?
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Hlášení pojistné událsti</h5>
+            <p class="card-text">Hlášení pojistné události nikdy nebylo snažší. Stačí vyplnit jednoduchý formulář.</p>
+            <a class="btn btn-primary " role="button" asp-area="" asp-controller="Home" asp-action="HlaseniSkody">Hlášení škody</a>
+        </div>
+        <div class="card-footer text-body-secondary">
+            Asistenční linka: 111 222 333
+        </div>
+    </div>
+</div>

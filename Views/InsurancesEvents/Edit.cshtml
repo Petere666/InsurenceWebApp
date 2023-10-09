@@ -1,0 +1,49 @@
+﻿@model InsurenceWebApp.Models.InsurancesEvents
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>InsurancesEvents</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ContractNumber" class="control-label"></label>
+                <input asp-for="ContractNumber" class="form-control" />
+                <span asp-validation-for="ContractNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventNumber" class="control-label"></label>
+                <input asp-for="EventNumber" class="form-control" />
+                <span asp-validation-for="EventNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DamageAmount" class="control-label"></label>
+                <input asp-for="DamageAmount" class="form-control" />
+                <span asp-validation-for="DamageAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DamageDescription" class="control-label"></label>
+                <input asp-for="DamageDescription" class="form-control" />
+                <span asp-validation-for="DamageDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

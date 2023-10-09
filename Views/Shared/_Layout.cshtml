@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="cs-cz">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - InsurenceWebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/InsurenceWebApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white  mb-0">
+            <div class="container-fluid">
+                <div class="d-flex">
+                    <a class="navbar-brand text-primary" asp-area="" asp-controller="Home" asp-action="Index">
+                        <h2>
+                            <img src="~/images/LOGOS.jpg" alt="Logo" width="60" height="48" class="" />
+                        Pojišťovna</h2>
+                    </a>
+                </div>
+                <div class="d-flex me-4">
+                    <partial name="_LoginPartial" />
+                </div>
+
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-blue border-bottom border-top border-shad bg-white box-shadow mb-2 p-1 ">
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex">
+                <ul class="navbar-nav gap-sm-4 ms-4">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary mb-1 mb-sm-0 mt-2 mt-sm-0" role="button" asp-area="" asp-controller="Home" asp-action="Index">Domů</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-outline-primary mb-1 mb-sm-0 p-0"> <a class="mb-1 p-1 btn-outline-primary" asp-area="" asp-controller="Home" asp-action="SjednatPojisteni">Sjednat pojišťení</a> </button>
+                            <button type="button" class="btn btn-outline-primary mb-1 mb-sm-0 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-primary" asp-area="" asp-controller="Home" asp-action="PojisteniCestovni">Cestovní pojištění</a></li>
+                                <li><a class="dropdown-item text-primary" asp-area="" asp-controller="Home" asp-action="PojisteniMajetku">Pojištění majetku</a></li>
+                                <li><a class="dropdown-item text-primary" asp-area="" asp-controller="Home" asp-action="PojisteniVozidel">Pojištění vozidel</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary mb-1 mb-sm-0" role="button" asp-area="" asp-controller="Home" asp-action="HlaseniSkody">Hlášení škody</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary mb-1 mb-sm-0" role="button" asp-area="" asp-controller="Home" asp-action="Kontakt">Kontakty</a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary" role="button" asp-area="" asp-controller="Home" asp-action="GDPR">GDPR</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+    <div class="container-xxl ">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted bg-white">
+        <div class="container">
+            &copy; 2023 - <img src="~/images/LOGOS.jpg" alt="Logo" width="30" height="24" class="" />  Pojišťovna
+            <a class="btn btn-link" role="button" asp-area="" asp-controller="Home" asp-action="GDPR">GDPR</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
