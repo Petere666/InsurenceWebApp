@@ -8,5 +8,9 @@
         public int DamageAmount { get; set; }
         public string DamageDescription { get; set; } = "";
 
+        public int? InsurancesId { get; set; }
+
+        public Insurances? Insurance { get; set; }
+
     }
 }

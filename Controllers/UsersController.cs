@@ -23,7 +23,7 @@ namespace InsurenceWebApp.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Users != null ? 
-                          View(await _context.Users.ToListAsync()) :
+                          View(await _context.Users.Include(u=>u.MyInsurances).ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Users'  is null.");
         }
 
@@ -35,7 +35,7 @@ namespace InsurenceWebApp.Controllers
                 return NotFound();
             }
 
-            var users = await _context.Users
+            var users = await _context.Users.Include(u => u.MyInsurances)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (users == null)
             {

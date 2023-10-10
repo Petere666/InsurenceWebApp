@@ -12,5 +12,7 @@
         public string ReferenceNumber { get; set; } = "";
         public int TelephoneNumber { get; set; } 
         public string Email { get; set; } = "";
+
+        public ICollection<Insurances>? MyInsurances { get; set; }
     }
 }
