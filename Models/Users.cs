@@ -1,4 +1,6 @@
-﻿namespace InsurenceWebApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace InsurenceWebApp.Models
 {
     public class Users
     {
@@ -10,7 +12,8 @@
         public string City { get; set; } = "";
         public string Street { get; set; } = "";
         public string ReferenceNumber { get; set; } = "";
-        public int TelephoneNumber { get; set; } 
+        public int TelephoneNumber { get; set; }
+        
         public string Email { get; set; } = "";
 
         public ICollection<Insurances>? MyInsurances { get; set; }
