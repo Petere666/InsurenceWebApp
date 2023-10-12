@@ -11,7 +11,7 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="dropdown-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="/Account/Manage/Index" title="Manage"> @User.Identity?.Name!</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="/Account/Manage/Index" title="Manage"> @User.Identity?.Name</a>
         </li>
         <li class="dropdown-item">
                 <form class="form-inline" asp-area="" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

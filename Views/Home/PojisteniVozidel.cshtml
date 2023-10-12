@@ -1,3 +1,43 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Pjištění vozidel";
 }
+
+<div class=" ">
+    <h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Pojištění vozidel</h1>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="mb-4"></div>
+        <div class="col-sm-12">
+            <div class="card h-100 w-100">
+                <div class="card-body">
+                    <h5 class="card-title">Doplňující informace</h5>
+                    <p class="card-text">Informace sloužící k vyplnění smlouvy.</p>
+                    <partial name="/Views/Users/Create.cshtml" />
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card text-center mt-5 mb-5 ">
+            <div class="card-header fs-4">
+                Pro sjednání pojištění se prosím přihlašte nebo zaregistrujte
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <a class="btn btn-outline-primary mb-1 mb-sm-0 mt-2 mt-sm-0" role="button" asp-area="" asp-controller="Account" asp-action="Register">Registrovat</a>
+                <a class="btn btn-outline-primary mb-1 mb-sm-0 mt-2 mt-sm-0" role="button" asp-area="" asp-controller="Account" asp-action="Login">Přihlásit</a>
+
+            </div>
+            <div class="card-footer text-body-secondary">
+                Těšíme se na Vás.
+            </div>
+        </div>
+
+    }
+</div>

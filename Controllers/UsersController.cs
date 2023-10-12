@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InsurenceWebApp.Data;
 using InsurenceWebApp.Models;
+using System.Xml.Linq;
+using System.IO;
+using Microsoft.AspNetCore.Identity;
 
 namespace InsurenceWebApp.Controllers
 {
@@ -56,14 +59,17 @@ namespace InsurenceWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,SurName,BirthDate,Age,City,Street,ReferenceNumber,TelephoneNumber,Email")] Users users)
+        
+        public async Task<IActionResult> Create(Users model, Users users) //([Bind("Id,Name,SurName,BirthDate,Age,City,Street,ReferenceNumber,TelephoneNumber,Email")] Users users)
         {
+            Users users1 = new Users { Name = model.Name, SurName = model.SurName, BirthDate = model.BirthDate, Age = model.Age, City = model.City, Street = model.Street, ReferenceNumber = model.ReferenceNumber, TelephoneNumber = model.TelephoneNumber};
             if (ModelState.IsValid)
             {
                 _context.Add(users);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToPage("/Insurances/Create");  //RedirectToAction(nameof(Index))
             }
+            
             return View(users);
         }
 
