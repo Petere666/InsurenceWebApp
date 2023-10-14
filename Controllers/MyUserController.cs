@@ -7,17 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InsurenceWebApp.Data;
 using InsurenceWebApp.Models;
-using System.Xml.Linq;
-using System.IO;
-using Microsoft.AspNetCore.Identity;
 
 namespace InsurenceWebApp.Controllers
 {
-    public class UsersController : Controller
+    public class MyUserController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public UsersController(ApplicationDbContext context)
+        public MyUserController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -25,20 +22,20 @@ namespace InsurenceWebApp.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-              return _context.Users != null ? 
-                          View(await _context.Users.Include(u=>u.MyInsurances).ToListAsync()) :
+              return _context.MyUser != null ? 
+                          View(await _context.MyUser.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Users'  is null.");
         }
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Users == null)
+            if (id == null || _context.MyUser == null)
             {
                 return NotFound();
             }
 
-            var users = await _context.Users.Include(u => u.MyInsurances)
+            var users = await _context.MyUser
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (users == null)
             {
@@ -59,29 +56,26 @@ namespace InsurenceWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
-        public async Task<IActionResult> Create(Users model, Users users) //([Bind("Id,Name,SurName,BirthDate,Age,City,Street,ReferenceNumber,TelephoneNumber,Email")] Users users)
+        public async Task<IActionResult> Create([Bind("Id,Name,SurName,BirthDate,Age,City,Street,ReferenceNumber,TelephoneNumber,Email")] MyUser users)
         {
-            Users users1 = new Users { Name = model.Name, SurName = model.SurName, BirthDate = model.BirthDate, Age = model.Age, City = model.City, Street = model.Street, ReferenceNumber = model.ReferenceNumber, TelephoneNumber = model.TelephoneNumber};
             if (ModelState.IsValid)
             {
                 _context.Add(users);
                 await _context.SaveChangesAsync();
-                return RedirectToPage("/Insurances/Create");  //RedirectToAction(nameof(Index))
+                return RedirectToAction(nameof(Index));
             }
-            
             return View(users);
         }
 
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Users == null)
+            if (id == null || _context.MyUser == null)
             {
                 return NotFound();
             }
 
-            var users = await _context.Users.FindAsync(id);
+            var users = await _context.MyUser.FindAsync(id);
             if (users == null)
             {
                 return NotFound();
@@ -94,7 +88,7 @@ namespace InsurenceWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,SurName,BirthDate,Age,City,Street,ReferenceNumber,TelephoneNumber,Email")] Users users)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,SurName,BirthDate,Age,City,Street,ReferenceNumber,TelephoneNumber,Email")] MyUser users)
         {
             if (id != users.Id)
             {
@@ -127,12 +121,12 @@ namespace InsurenceWebApp.Controllers
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Users == null)
+            if (id == null || _context.MyUser == null)
             {
                 return NotFound();
             }
 
-            var users = await _context.Users
+            var users = await _context.MyUser
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (users == null)
             {
@@ -147,14 +141,14 @@ namespace InsurenceWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Users == null)
+            if (_context.MyUser == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Users'  is null.");
             }
-            var users = await _context.Users.FindAsync(id);
+            var users = await _context.MyUser.FindAsync(id);
             if (users != null)
             {
-                _context.Users.Remove(users);
+                _context.MyUser.Remove(users);
             }
             
             await _context.SaveChangesAsync();
@@ -163,7 +157,7 @@ namespace InsurenceWebApp.Controllers
 
         private bool UsersExists(int id)
         {
-          return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.MyUser?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

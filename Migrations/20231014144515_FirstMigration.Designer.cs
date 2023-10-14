@@ -9,22 +9,90 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace InsurenceWebApp.Data.Migrations
+namespace InsurenceWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231005082231_UsersMigration")]
-    partial class UsersMigration
+    [Migration("20231014144515_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.21")
+                .HasAnnotation("ProductVersion", "6.0.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("InsurenceWebApp.Models.Users", b =>
+            modelBuilder.Entity("InsurenceWebApp.Models.Insurance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ContractNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContractType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MonthPayment")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MyUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Principal")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Validity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MyUserId");
+
+                    b.ToTable("Insurance");
+                });
+
+            modelBuilder.Entity("InsurenceWebApp.Models.InsurancesEvents", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ContractNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DamageAmount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DamageDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EventNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("InsuranceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("InsurancesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InsuranceId");
+
+                    b.ToTable("InsurancesEvents");
+                });
+
+            modelBuilder.Entity("InsurenceWebApp.Models.MyUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,7 +135,7 @@ namespace InsurenceWebApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("MyUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -272,6 +340,24 @@ namespace InsurenceWebApp.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("InsurenceWebApp.Models.Insurance", b =>
+                {
+                    b.HasOne("InsurenceWebApp.Models.MyUser", "MyUser")
+                        .WithMany("MyInsurances")
+                        .HasForeignKey("MyUserId");
+
+                    b.Navigation("MyUser");
+                });
+
+            modelBuilder.Entity("InsurenceWebApp.Models.InsurancesEvents", b =>
+                {
+                    b.HasOne("InsurenceWebApp.Models.Insurance", "Insurance")
+                        .WithMany("MyEvents")
+                        .HasForeignKey("InsuranceId");
+
+                    b.Navigation("Insurance");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -321,6 +407,16 @@ namespace InsurenceWebApp.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("InsurenceWebApp.Models.Insurance", b =>
+                {
+                    b.Navigation("MyEvents");
+                });
+
+            modelBuilder.Entity("InsurenceWebApp.Models.MyUser", b =>
+                {
+                    b.Navigation("MyInsurances");
                 });
 #pragma warning restore 612, 618
         }

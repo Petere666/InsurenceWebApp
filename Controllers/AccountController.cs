@@ -1,20 +1,25 @@
-﻿using InsurenceWebApp.Models;
+﻿using InsurenceWebApp.Data;
+using InsurenceWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography.Xml;
 
 namespace InsurenceWebApp.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
 
         public AccountController
         (
+            ApplicationDbContext context,
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager
         )
         {
+            this._context = context;
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
@@ -77,6 +82,12 @@ namespace InsurenceWebApp.Controllers
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
+
+                    var tvujUser = new MyUser();
+                    tvujUser.Email = model.Email;
+                    _context.Add(tvujUser);
+                    await _context.SaveChangesAsync();
+
                     return RedirectToLocal(returnUrl);
                 }
 

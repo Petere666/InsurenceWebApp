@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace InsurenceWebApp.Data.Migrations
+namespace InsurenceWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -17,12 +17,12 @@ namespace InsurenceWebApp.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.21")
+                .HasAnnotation("ProductVersion", "6.0.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("InsurenceWebApp.Models.Insurances", b =>
+            modelBuilder.Entity("InsurenceWebApp.Models.Insurance", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,10 +40,10 @@ namespace InsurenceWebApp.Data.Migrations
                     b.Property<int>("MonthPayment")
                         .HasColumnType("int");
 
-                    b.Property<int>("Principal")
+                    b.Property<int?>("MyUserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("Principal")
                         .HasColumnType("int");
 
                     b.Property<int>("Validity")
@@ -51,9 +51,9 @@ namespace InsurenceWebApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("MyUserId");
 
-                    b.ToTable("Insurances");
+                    b.ToTable("Insurance");
                 });
 
             modelBuilder.Entity("InsurenceWebApp.Models.InsurancesEvents", b =>
@@ -77,17 +77,20 @@ namespace InsurenceWebApp.Data.Migrations
                     b.Property<int>("EventNumber")
                         .HasColumnType("int");
 
+                    b.Property<int?>("InsuranceId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("InsurancesId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InsurancesId");
+                    b.HasIndex("InsuranceId");
 
                     b.ToTable("InsurancesEvents");
                 });
 
-            modelBuilder.Entity("InsurenceWebApp.Models.Users", b =>
+            modelBuilder.Entity("InsurenceWebApp.Models.MyUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,7 +133,7 @@ namespace InsurenceWebApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("MyUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -335,20 +338,20 @@ namespace InsurenceWebApp.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("InsurenceWebApp.Models.Insurances", b =>
+            modelBuilder.Entity("InsurenceWebApp.Models.Insurance", b =>
                 {
-                    b.HasOne("InsurenceWebApp.Models.Users", "User")
+                    b.HasOne("InsurenceWebApp.Models.MyUser", "MyUser")
                         .WithMany("MyInsurances")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("MyUserId");
 
-                    b.Navigation("User");
+                    b.Navigation("MyUser");
                 });
 
             modelBuilder.Entity("InsurenceWebApp.Models.InsurancesEvents", b =>
                 {
-                    b.HasOne("InsurenceWebApp.Models.Insurances", "Insurance")
+                    b.HasOne("InsurenceWebApp.Models.Insurance", "Insurance")
                         .WithMany("MyEvents")
-                        .HasForeignKey("InsurancesId");
+                        .HasForeignKey("InsuranceId");
 
                     b.Navigation("Insurance");
                 });
@@ -404,12 +407,12 @@ namespace InsurenceWebApp.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("InsurenceWebApp.Models.Insurances", b =>
+            modelBuilder.Entity("InsurenceWebApp.Models.Insurance", b =>
                 {
                     b.Navigation("MyEvents");
                 });
 
-            modelBuilder.Entity("InsurenceWebApp.Models.Users", b =>
+            modelBuilder.Entity("InsurenceWebApp.Models.MyUser", b =>
                 {
                     b.Navigation("MyInsurances");
                 });

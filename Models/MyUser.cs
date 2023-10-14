@@ -2,7 +2,7 @@
 
 namespace InsurenceWebApp.Models
 {
-    public class Users
+    public class MyUser
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Vyplňte popisek")]
@@ -25,6 +25,6 @@ namespace InsurenceWebApp.Models
 
         public string Email { get; set; } = "";
 
-        public ICollection<Insurances>? MyInsurances { get; set; }
+        public ICollection<Insurance>? MyInsurances { get; set; }
     }
 }

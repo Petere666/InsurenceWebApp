@@ -10,8 +10,8 @@ namespace InsurenceWebApp.Data
             : base(options)
         {
         }
-        public DbSet<InsurenceWebApp.Models.Users>? Users { get; set; }
-        public DbSet<InsurenceWebApp.Models.Insurances>? Insurances { get; set; }
+        public DbSet<InsurenceWebApp.Models.MyUser>? MyUser { get; set; }
+        public DbSet<InsurenceWebApp.Models.Insurance>? Insurance { get; set; }
         public DbSet<InsurenceWebApp.Models.InsurancesEvents>? InsurancesEvents { get; set; }
     }
 }

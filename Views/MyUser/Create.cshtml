@@ -1,11 +1,11 @@
-﻿@model InsurenceWebApp.Models.Users
+﻿@model InsurenceWebApp.Models.MyUser
 
 <h1>Informace o pojistníkovi</h1>
 
 <hr />
 <div class="row mb-5">
     <div class="card w-100">
-        <form asp-action="Create">
+        <form asp-action="Create" asp-controller="Users">
                 <div class="row pt-4 pb-3 mb-3 ">
                     <div class="col-sm-6 mb-0 mb-sm-0">
                         <div class="card h-100">

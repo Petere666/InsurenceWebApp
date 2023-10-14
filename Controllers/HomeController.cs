@@ -42,6 +42,7 @@ namespace InsurenceWebApp.Controllers
 
         public IActionResult PojisteniMajetku()
         {
+
             return View();
         }
 
