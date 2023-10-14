@@ -9,15 +9,19 @@ using InsurenceWebApp.Data;
 using InsurenceWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 
+
+
+
 namespace InsurenceWebApp.Controllers
 {
     public class InsurancesController : Controller
     {
-        private readonly ApplicationDbContext _context; 
+        private readonly ApplicationDbContext _context;
 
         public InsurancesController(ApplicationDbContext context)
         {
             _context = context;
+
         }
 
         // GET: Insurance
@@ -59,7 +63,9 @@ namespace InsurenceWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(String MyUser, [Bind("Id,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurances)
         {
-            var user = _context.MyUser.Single(item => item.Email == MyUser);
+            var email = User.Identity.Name;
+
+            var user = _context.MyUser.Single(item => item.Email == MyUser); //neni treba delat tohle, pres identity to vraci prihlaseneho uzivatele
 
             if (ModelState.IsValid)
             {
