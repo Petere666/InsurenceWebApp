@@ -33,6 +33,7 @@ namespace InsurenceWebApp.Controllers
         }
 
         //prihlaseni uzivatele
+        
         public IActionResult Login(string? returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -68,6 +69,9 @@ namespace InsurenceWebApp.Controllers
         }
 
         //registrace uzivatele
+        //podminky registrace v Program.cs
+        //  - zrusit overovani emailem - zadny email nechodi a je pak treba u noveho uzivatele zmenit hodnotu overeni v tabulce
+        //  - mozna zrusit special znaky - strasnej voser
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string? returnUrl = null)

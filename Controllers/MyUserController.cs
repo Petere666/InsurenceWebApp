@@ -44,7 +44,12 @@ namespace InsurenceWebApp.Controllers
 
             return View(users);
         }
+        
+        //
 
+        //nepouzivat Create, bude vytvoren pri registraci, puoze ho nechat uzivatele editovat
+
+        //
         // GET: Users/Create
         public IActionResult Create()
         {
@@ -66,6 +71,14 @@ namespace InsurenceWebApp.Controllers
             }
             return View(users);
         }
+
+        //
+
+        //po registraci dat uzivateli vypsat i MyUsers hodnoty
+        //osetrit aby bez vyplnenych hodnot se nemohl prihlasit, po prihlaseni zkontrolat vyplneni a pripadne mu to dat vyplnit
+        //kontrolovat vyplneni pri nove Insurence a InsurenceEvent
+
+        //
 
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
