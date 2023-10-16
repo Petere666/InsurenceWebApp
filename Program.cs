@@ -18,6 +18,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
         options.Password.RequiredLength = 8;
         options.SignIn.RequireConfirmedAccount = false;
         options.User.RequireUniqueEmail = true;
+        options.Password.RequireNonAlphanumeric = false;
     })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
@@ -55,3 +56,5 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+

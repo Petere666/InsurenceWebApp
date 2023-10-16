@@ -13,9 +13,12 @@ namespace InsurenceWebApp.Models
         public string SurName { get; set; } = "";
 
         [Required(ErrorMessage = "Vyplňte popisek")]
-        public int BirthDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime BirthDate { get; set; }
 
         [Required(ErrorMessage = "Vyplňte popisek")]
+        [MinLength(1)]
+        [MaxLength(150)]
         public int Age { get; set; }
 
         [Required(ErrorMessage = "Vyplňte popisek")]
@@ -28,6 +31,7 @@ namespace InsurenceWebApp.Models
         public string ReferenceNumber { get; set; } = "";
 
         [Required(ErrorMessage = "Vyplňte popisek")]
+        [StringLength(9 , MinimumLength = 9)]
         public int TelephoneNumber { get; set; }
         
 
