@@ -69,11 +69,10 @@ namespace InsurenceWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(String MyUser, [Bind("Id,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurance)
+        public async Task<IActionResult> Create([Bind("Id,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurance)
         {
-            var email = User.Identity.Name;
-            //tohle neni treba delat, pres Identity to vraci prihlaseneho uzivatele, pri zruseni treba i zrusit i String MyUser vcetne veci v HTML
-            var user = _context.MyUser.Single(item => item.Email == MyUser); 
+
+            var user = _context.MyUser.Single(item => item.Email == User.Identity.Name); 
 
             if (ModelState.IsValid)
             {

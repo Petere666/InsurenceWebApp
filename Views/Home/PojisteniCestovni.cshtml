@@ -3,55 +3,48 @@
 @inject UserManager<IdentityUser> UserManager
 @model InsurenceWebApp.Models.Insurance
 
+
 @{
     ViewData["Title"] = "Cestovní pojištění";
 }
 
 <div class=" ">
     <h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Cestovní pojištění</h1>
-
+    <div class="col-sm-12 mb-3 mb-sm-0 pb-3">
+        <div class="card h-100 w-100 ">
+            <div class="card-body">
+                <h4 class="card-title border-bottom border-3 border-primary">Cestovní pojištění</h4>
+                <ul class="list-unstyled">
+                    <li><h5>Proč si sjednat cestovní pojištění u nás?</h5></li>
+                    <ul>
+                        <li>Limit pojistného spolehlivě pokryje léčebné výlohy v zahraničí. </li>
+                        <li>Můžete si sjednat pojištění nejen na cestu do zahraničí, ale i na dovolenou v České republice.</li>
+                        <li>Pojištěný máte i zásah horské služby v případě zdravotních potíží.</li>
+                        <li>Součástí pojištění odpovědnosti je také pojištění právní ochrany pro případ, kdy budete ve sporu s cestovní kanceláří nebo přepravcem. </li>
+                        <li>Jsme vždy na telefonu – asistenční služba 24 hodin denně v českém jazyce.</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </div>
     @if (SignInManager.IsSignedIn(User))
     {
-        <div class="mb-4"></div>
-        <div class="col-sm-12">
-            <div class="card h-100 w-100">
-                <div class="card-body">
-                    <h5 class="card-title">Doplňující informace</h5>
-                    <p class="card-text">Informace sloužící k vyplnění smlouvy.</p>
-
-                    <form asp-action="Create" asp-controller="Insurances">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="form-group">
-                            <label asp-for="ContractNumber" class="control-label"></label>
-                            <input asp-for="ContractNumber" class="form-control" />
-                            <span asp-validation-for="ContractNumber" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="MonthPayment" class="control-label"></label>
-                            <input asp-for="MonthPayment" class="form-control" />
-                            <span asp-validation-for="MonthPayment" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Principal" class="control-label"></label>
-                            <input asp-for="Principal" class="form-control" />
-                            <span asp-validation-for="Principal" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Validity" class="control-label"></label>
-                            <input asp-for="Validity" class="form-control" />
-                            <span asp-validation-for="Validity" class="text-danger"></span>
-                        </div>
-                        <input asp-for="MyUser" type="hidden" value="@User.Identity?.Name" />
-                        <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-primary" />
-                        </div>
-                    </form>
-                </div>
+        <div class="card text-center mt-5 mb-5 ">
+            <div class="card-header fs-4">
+                Sjednání cestovního pojištění
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <a class="btn btn-outline-primary mb-1 mb-sm-0 mt-2 mt-sm-0" role="button" asp-area="" asp-controller="Insurances" asp-action="Create">Sjednat pojištění</a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Těšíme se na Vás.
             </div>
         </div>
     }
     else
     {
+        
         <div class="card text-center mt-5 mb-5 ">
             <div class="card-header fs-4">
                 Pro sjednání pojištění se prosím přihlašte nebo zaregistrujte

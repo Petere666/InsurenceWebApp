@@ -17,8 +17,7 @@ namespace InsurenceWebApp.Models
         public DateTime BirthDate { get; set; }
 
         [Required(ErrorMessage = "Vyplňte popisek")]
-        [MinLength(1)]
-        [MaxLength(150)]
+        [Range(18,150)]
         public int Age { get; set; }
 
         [Required(ErrorMessage = "Vyplňte popisek")]
@@ -31,7 +30,6 @@ namespace InsurenceWebApp.Models
         public string ReferenceNumber { get; set; } = "";
 
         [Required(ErrorMessage = "Vyplňte popisek")]
-        [StringLength(9 , MinimumLength = 9)]
         public int TelephoneNumber { get; set; }
         
 
