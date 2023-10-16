@@ -45,14 +45,21 @@ namespace InsurenceWebApp.Controllers
         public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-
+            var uzivatel = _context.MyUser?.Single(item => item.Email == model.Email);
             if (ModelState.IsValid)
             {
                 Microsoft.AspNetCore.Identity.SignInResult result =
                     await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
                 if (result.Succeeded)
-                    return RedirectToLocal(returnUrl);
+                    if (uzivatel?.Name.Length <= 1)
+                    {
+                        return RedirectToAction("Edit", "MyUser", new { uzivatel.Id });
+                    }
+                    else
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
 
                 ModelState.AddModelError("Login error", "Neplatné přihlašovací údaje.");
                 return View(model);
@@ -62,16 +69,17 @@ namespace InsurenceWebApp.Controllers
             return View(model);
         }
 
+
+        //registrace uzivatele
+        //podminky registrace v Program.cs
+        //
         public IActionResult Register(string? returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
-        //registrace uzivatele
-        //podminky registrace v Program.cs
-        //  - zrusit overovani emailem - zadny email nechodi a je pak treba u noveho uzivatele zmenit hodnotu overeni v tabulce
-        //  - mozna zrusit special znaky - strasnej voser
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string? returnUrl = null)
@@ -92,7 +100,7 @@ namespace InsurenceWebApp.Controllers
                     _context.Add(tvujUser);
                     await _context.SaveChangesAsync();
 
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Edit", "MyUser", new { tvujUser.Id });
                 }
 
                 foreach (IdentityError error in result.Errors)
@@ -103,6 +111,14 @@ namespace InsurenceWebApp.Controllers
 
             return View(model);
         }
+
+        public IActionResult ClientZone()
+        {
+            return View();
+        }
+
+
+
 
         public async Task<IActionResult> Logout()
         {

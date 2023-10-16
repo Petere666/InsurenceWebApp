@@ -58,8 +58,21 @@ namespace InsurenceWebApp.Controllers
         //
 
         // GET: Insurance/Create
-        public IActionResult Create()
+        public IActionResult CreateCestovni()
         {
+            if (User.Identity?.Name != null)
+            {
+                var uzivatel = _context.MyUser?.Single(item => item.Email == User.Identity.Name);
+                if (uzivatel?.Name.Length <= 1)
+                {
+                    return RedirectToAction("Edit", "MyUser", new { uzivatel.Id });
+                }
+                else
+                {
+                    return View();
+                }
+            }
+
             return View();
         }
 
@@ -72,7 +85,7 @@ namespace InsurenceWebApp.Controllers
         public async Task<IActionResult> Create([Bind("Id,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurance)
         {
 
-            var user = _context.MyUser.Single(item => item.Email == User.Identity.Name); 
+            var user = _context.MyUser?.Single(item => item.Email == User.Identity.Name); 
 
             if (ModelState.IsValid)
             {

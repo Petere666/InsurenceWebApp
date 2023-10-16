@@ -7,6 +7,7 @@ namespace InsurenceWebApp.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Vyplňte popisek")]
+        [StringLength(50, MinimumLength =2)]
         public string Name { get; set; } = "";
 
         [Required(ErrorMessage = "Vyplňte popisek")]
@@ -30,8 +31,8 @@ namespace InsurenceWebApp.Models
         public string ReferenceNumber { get; set; } = "";
 
         [Required(ErrorMessage = "Vyplňte popisek")]
+        [StringLength (12, MinimumLength = 9)]
         public int TelephoneNumber { get; set; }
-        
 
         public string Email { get; set; } = "";
 

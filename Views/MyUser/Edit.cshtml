@@ -4,70 +4,138 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Doplňte prosím klientské údaje</h1>
 
-<h4>Users</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 align-items-center">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-4">
                 <label asp-for="Name" class="control-label"></label>
+                    </div>
+                    <div class="col-auto ">
                 <input asp-for="Name" class="form-control" />
+                    </div>
+                    <div class="col-auto">
                 <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-4">
                 <label asp-for="SurName" class="control-label"></label>
+                    </div>
+                    <div class="col-auto">
                 <input asp-for="SurName" class="form-control" />
+                    </div>
+                    <div class="col-auto">
                 <span asp-validation-for="SurName" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-4">
                 <label asp-for="BirthDate" class="control-label"></label>
+                    </div>
+                    <div class="col-auto">
                 <input asp-for="BirthDate" class="form-control" />
+                    </div>
+                    <div class="col-auto">
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-4">
                 <label asp-for="Age" class="control-label"></label>
+                    </div>
+                    <div class="col-auto">
                 <input asp-for="Age" class="form-control" />
+                    </div>
+                    <div class="col-auto">
                 <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-4">
                 <label asp-for="City" class="control-label"></label>
+                    </div>
+                    <div class="col-auto">
                 <input asp-for="City" class="form-control" />
+                    </div>
+                    <div class="col-auto">
                 <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-4">
                 <label asp-for="Street" class="control-label"></label>
+                    </div>
+                    <div class="col-auto">
                 <input asp-for="Street" class="form-control" />
+                    </div>
+                    <div class="col-auto">
                 <span asp-validation-for="Street" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-4">
                 <label asp-for="ReferenceNumber" class="control-label"></label>
+                    </div>
+                    <div class="col-auto">
                 <input asp-for="ReferenceNumber" class="form-control" />
+                    </div>
+                    <div class="col-auto">
                 <span asp-validation-for="ReferenceNumber" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-4">
                 <label asp-for="TelephoneNumber" class="control-label"></label>
+                    </div>
+                    <div class="col-auto">
                 <input asp-for="TelephoneNumber" class="form-control" />
+                    </div>
+                    <div class="col-auto">
                 <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-4">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-auto">
+                <input asp-for="Email" class="form-control" disabled/>
+                    </div>
+                    <div class="col-auto">
+                <span asp-validation-for="Email" class="text-danger" ></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<div class="mb-5"></div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

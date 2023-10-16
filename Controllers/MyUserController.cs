@@ -126,7 +126,7 @@ namespace InsurenceWebApp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(users);
         }
