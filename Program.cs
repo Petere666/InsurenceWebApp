@@ -1,6 +1,9 @@
 using InsurenceWebApp.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +16,17 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     {
         options.Password.RequiredLength = 8;
-        options.SignIn.RequireConfirmedAccount = true;
+        options.SignIn.RequireConfirmedAccount = false;
         options.User.RequireUniqueEmail = true;
     })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+//certificate add       https://learn.microsoft.com/cs-cz/aspnet/core/security/authentication/certauth?view=aspnetcore-7.0
+
+app.UseCertificateForwarding();  //???
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

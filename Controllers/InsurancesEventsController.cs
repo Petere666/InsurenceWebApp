@@ -45,6 +45,13 @@ namespace InsurenceWebApp.Controllers
             return View(insurancesEvents);
         }
 
+        //
+
+        //pridat kontrolu jestli existuje Insurance, mozne lze udelat na HTML
+        //
+
+        //
+
         // GET: InsurancesEvents/Create
         public IActionResult Create()
         {

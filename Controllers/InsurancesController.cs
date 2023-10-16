@@ -50,11 +50,19 @@ namespace InsurenceWebApp.Controllers
             return View(insurances);
         }
 
+        //
+
+        //pred vytvorenim zkontrolovat MyUsers vyplneni a dat mu to vyplnit nez ho pustim k vyvoreni Insurance
+        //prihlaseni kontroluji ma HTML strance
+
+        //
+
         // GET: Insurance/Create
         public IActionResult Create()
         {
             return View();
         }
+
 
         // POST: Insurance/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -64,8 +72,8 @@ namespace InsurenceWebApp.Controllers
         public async Task<IActionResult> Create(String MyUser, [Bind("Id,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurances)
         {
             var email = User.Identity.Name;
-
-            var user = _context.MyUser.Single(item => item.Email == MyUser); //neni treba delat tohle, pres identity to vraci prihlaseneho uzivatele
+            //tohle neni treba delat, pres Identity to vraci prihlaseneho uzivatele, pri zruseni treba i zrusit i String MyUser vcetne veci v HTML
+            var user = _context.MyUser.Single(item => item.Email == MyUser); 
 
             if (ModelState.IsValid)
             {
