@@ -40,14 +40,14 @@ namespace InsurenceWebApp.Controllers
                 return NotFound();
             }
 
-            var insurances = await _context.Insurance
+            var insurance = await _context.Insurance
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (insurances == null)
+            if (insurance == null)
             {
                 return NotFound();
             }
 
-            return View(insurances);
+            return View(insurance);
         }
 
         //
@@ -69,7 +69,7 @@ namespace InsurenceWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(String MyUser, [Bind("Id,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurances)
+        public async Task<IActionResult> Create(String MyUser, [Bind("Id,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurance)
         {
             var email = User.Identity.Name;
             //tohle neni treba delat, pres Identity to vraci prihlaseneho uzivatele, pri zruseni treba i zrusit i String MyUser vcetne veci v HTML
@@ -77,12 +77,12 @@ namespace InsurenceWebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                insurances.MyUser = user;
-                _context.Add(insurances);
+                insurance.MyUser = user;
+                _context.Add(insurance);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(insurances);
+            return View(insurance);
         }
 
         // GET: Insurance/Edit/5
@@ -93,12 +93,12 @@ namespace InsurenceWebApp.Controllers
                 return NotFound();
             }
 
-            var insurances = await _context.Insurance.FindAsync(id);
-            if (insurances == null)
+            var insurance = await _context.Insurance.FindAsync(id);
+            if (insurance == null)
             {
                 return NotFound();
             }
-            return View(insurances);
+            return View(insurance);
         }
 
         // POST: Insurance/Edit/5
@@ -106,9 +106,9 @@ namespace InsurenceWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurances)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurance)
         {
-            if (id != insurances.Id)
+            if (id != insurance.Id)
             {
                 return NotFound();
             }
@@ -117,12 +117,12 @@ namespace InsurenceWebApp.Controllers
             {
                 try
                 {
-                    _context.Update(insurances);
+                    _context.Update(insurance);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InsurancesExists(insurances.Id))
+                    if (!InsurancesExists(insurance.Id))
                     {
                         return NotFound();
                     }
@@ -133,7 +133,7 @@ namespace InsurenceWebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(insurances);
+            return View(insurance);
         }
 
         // GET: Insurance/Delete/5
