@@ -1,13 +1,12 @@
 ﻿@model InsurenceWebApp.Models.Insurance
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Sjednání pojištění";
 }
 
-<h1>Create</h1>
+<h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Sjednání pojištění</h1>
+<h2 class="text-primary pt-3 mb-3 pb-3 border-bottom border-1 border-dark ">Smuvní podmínky</h2>
 
-<h4>Insurance</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -15,10 +14,10 @@
             <div class="form-group mb-3">
                 <div class="row g-3 align-items-center">
                     <div class="col-4">
-                        <label asp-for="ContractType" class="control-label"></label>
+                        <label asp-for="ContractType" class="control-label">Typ smlouvy</label>
                     </div>
                     <div class="col-auto ">
-                        <input asp-for="ContractType" class="form-control" />
+                        <input asp-for="ContractType" class="form-control" value="Pojištění Majetku" disabled />
                     </div>
                     <div class="col-auto ">
                         <span asp-validation-for="ContractType" class="text-danger"></span>
@@ -28,10 +27,10 @@
             <div class="form-group mb-3">
                 <div class="row g-3 align-items-center">
                     <div class="col-4">
-                        <label asp-for="ContractNumber" class="control-label"></label>
+                        <label asp-for="ContractNumber" class="control-label">Číslo pojistné smlouvy</label>
                     </div>
                     <div class="col-auto ">
-                        <input asp-for="ContractNumber" class="form-control" />
+                        <input asp-for="ContractNumber" class="form-control" value="2023002" disabled />
                     </div>
                     <div class="col-auto ">
                         <span asp-validation-for="ContractNumber" class="text-danger"></span>
@@ -41,7 +40,7 @@
             <div class="form-group mb-3">
                 <div class="row g-3 align-items-center">
                     <div class="col-4">
-                        <label asp-for="MonthPayment" class="control-label"></label>
+                        <label asp-for="MonthPayment" class="control-label">Měsíční platby</label>
                     </div>
                     <div class="col-auto ">
                         <input asp-for="MonthPayment" class="form-control" />
@@ -54,7 +53,7 @@
             <div class="form-group mb-3">
                 <div class="row g-3 align-items-center">
                     <div class="col-4">
-                        <label asp-for="Principal" class="control-label"></label>
+                        <label asp-for="Principal" class="control-label">Jistina</label>
                     </div>
                     <div class="col-auto ">
                         <input asp-for="Principal" class="form-control" />
@@ -67,7 +66,7 @@
             <div class="form-group mb-3">
                 <div class="row g-3 align-items-center">
                     <div class="col-4">
-                        <label asp-for="Validity" class="control-label"></label>
+                        <label asp-for="Validity" class="control-label">Platnost pojištění</label>
                     </div>
                     <div class="col-auto ">
                         <input asp-for="Validity" class="form-control" />
@@ -86,5 +85,7 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
