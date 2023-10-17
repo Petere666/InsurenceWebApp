@@ -1,10 +1,10 @@
 ﻿@model InsurenceWebApp.Models.MyUser
 
 @{
-    ViewData["Title"] = "Doplnění informací";
+	ViewData["Title"] = "Uživatelské informace";
 }
 
-<h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Doplňte prosím klientské údaje</h1>
+<h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Informace o uživateli</h1>
 
 <div class="row">
     <div class="col-md-4 align-items-center">
@@ -121,15 +121,16 @@
                         <label asp-for="Email" class="control-label"></label>
                     </div>
                     <div class="col-auto">
-                        <input asp-for="Email" class="form-control" readonly/>
+                        <input asp-for="Email" class="form-control"  readonly/>
                     </div>
                     <div class="col-auto">
-                        <span asp-validation-for="Email" class="text-danger" ></span>
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="form-group mt-3">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary m-1" />
+                <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="ClientZone">Back</a>
             </div>
         </form>
     </div>
@@ -138,5 +139,7 @@
 <div class="mb-5"></div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

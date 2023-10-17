@@ -1,6 +1,55 @@
-﻿
+﻿@model InsurenceWebApp.Models.MyUser
+
+
 @{
-	ViewData["Title"] = "Přihlášení";
+	ViewData["Title"] = "Klientská zóna";
 }
 
+
 <h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Klientská zóna</h1>
+
+<div class="card text-center mt-5 mb-5 ">
+    <div class="card-header">
+        Vítejte v klientské zóně @User.Identity?.Name
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Níže najdete odkazy pro správu Vašeho uživatelského účtu.</h5>
+        <p class="card-text">Pro změnu informací o Vás nebo změnu smluvních podmínek případně náhled na pojistné události použijte odkazy níže</p>
+    </div>
+    <div class="card-footer text-body-secondary">
+        Infolinka: 444 555 666
+    </div>
+</div>
+
+<div class="row pt-4 pb-5  border-bottom border-2 border-dark">
+    <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Informace o uživateli</h5>
+                <p class="card-text">Zde můžete změnit informace o Vás. Pokud si nebudete vědět rady volejte nši infoliku - 444 555 666</p>
+                <a class="dropdown-item text-primary" asp-area="" asp-controller="MyUser" asp-action="EditClient" asp-route-id="@ViewBag.MyUserId">Upravit uživatelské informace</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 ">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Správa pojištění</h5>
+                <p class="card-text">Na tomto místě můžete spravovat Vaše pojistné smlouvy.</p>
+                <a class="dropdown-item text-primary" asp-area="" asp-controller="Insurances" asp-action="Index">Změnit / ukončit pojištění</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Pojistné události</h5>
+                <p class="card-text">Podívejte se na Vámi nahlášené pojistné události. Po nahlášení mohou být události změněny pouze pracovníky pojišťovny. V případě potřeby se prosím obraťte na naši infolinku - 444 555 666</p>
+                <a class="dropdown-item text-primary" asp-area="" asp-controller="InsurancesEvents" asp-action="Index">Výpis nahlášených pojistných událostí</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

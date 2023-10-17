@@ -17,7 +17,7 @@
                         <label asp-for="ContractType" class="control-label">Typ smlouvy</label>
                     </div>
                     <div class="col-auto ">
-                        <input asp-for="ContractType" class="form-control" value="Cestovní Pojištění" disabled/>
+                        <input asp-for="ContractType" class="form-control" value="Cestovní Pojištění" readonly/>
                     </div>
                     <div class="col-auto ">
                         <span asp-validation-for="ContractType" class="text-danger"></span>
@@ -30,7 +30,7 @@
                         <label asp-for="ContractNumber" class="control-label">Číslo pojistné smlouvy</label>
                     </div>
                     <div class="col-auto ">
-                        <input asp-for="ContractNumber" class="form-control" value="2023001" disabled />
+                        <input asp-for="ContractNumber" class="form-control" value="2023001" readonly />
                     </div>
                     <div class="col-auto ">
                         <span asp-validation-for="ContractNumber" class="text-danger"></span>

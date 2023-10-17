@@ -1,4 +1,6 @@
-﻿namespace InsurenceWebApp.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace InsurenceWebApp.Models
 {
     public class Insurance
     {

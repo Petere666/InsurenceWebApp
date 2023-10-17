@@ -96,6 +96,21 @@ namespace InsurenceWebApp.Controllers
             return View(users);
         }
 
+        public async Task<IActionResult> EditClient(int? id)
+        {
+            if (id == null || _context.MyUser == null)
+            {
+                return NotFound();
+            }
+
+            var users = await _context.MyUser.FindAsync(id);
+            if (users == null)
+            {
+                return NotFound();
+            }
+            return View(users);
+        }
+
         // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -126,10 +141,11 @@ namespace InsurenceWebApp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ClientZone", "Account");
             }
             return View(users);
         }
+
 
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -114,6 +114,8 @@ namespace InsurenceWebApp.Controllers
 
         public IActionResult ClientZone()
         {
+            var uzivatel = _context.MyUser?.Single(item => item.Email == User.Identity.Name);
+            ViewBag.MyUserId = uzivatel?.Id;
             return View();
         }
 

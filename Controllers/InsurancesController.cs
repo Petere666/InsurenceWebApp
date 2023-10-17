@@ -10,13 +10,12 @@ using InsurenceWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 
 
-
-
 namespace InsurenceWebApp.Controllers
 {
     public class InsurancesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        Insurance db = new Insurance();
 
         public InsurancesController(ApplicationDbContext context)
         {
@@ -27,9 +26,13 @@ namespace InsurenceWebApp.Controllers
         // GET: Insurance
         public async Task<IActionResult> Index()
         {
-              return _context.Insurance != null ? 
-                          View(await _context.Insurance.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Insurance'  is null.");
+            var uzivatel = await _context.MyUser.SingleAsync(item => item.Email == User.Identity.Name);
+
+            var insurances = from u in _context.Insurance       //var myinsurance = _context.Insurance.ToList().FirstOrDefault(s => s.MyUser == uzivatel)
+                             where u.MyUser.Id == uzivatel.Id   //  - takhle to nefunguje
+                             select u; 
+
+            return View(insurances);
         }
 
         // GET: Insurance/Details/5
@@ -53,7 +56,7 @@ namespace InsurenceWebApp.Controllers
         //
 
         //pred vytvorenim zkontrolovat MyUsers vyplneni a dat mu to vyplnit nez ho pustim k vyvoreni Insurance
-        //prihlaseni kontroluji ma HTML strance
+        //prihlaseni kontroluji i na HTML strance, kda vracim jine prvky na stranku
 
         //
 
