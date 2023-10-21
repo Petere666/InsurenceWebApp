@@ -27,7 +27,7 @@ var app = builder.Build();
 
 //certificate add       https://learn.microsoft.com/cs-cz/aspnet/core/security/authentication/certauth?view=aspnetcore-7.0
 
-app.UseCertificateForwarding();  //???
+//app.UseCertificateForwarding();  //???
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

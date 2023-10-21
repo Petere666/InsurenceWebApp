@@ -15,7 +15,6 @@ namespace InsurenceWebApp.Controllers
     public class InsurancesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        Insurance db = new Insurance();
 
         public InsurancesController(ApplicationDbContext context)
         {
@@ -28,8 +27,8 @@ namespace InsurenceWebApp.Controllers
         {
             var uzivatel = await _context.MyUser.SingleAsync(item => item.Email == User.Identity.Name);
 
-            var insurances = from u in _context.Insurance       //var myinsurance = _context.Insurance.ToList().FirstOrDefault(s => s.MyUser == uzivatel)
-                             where u.MyUser.Id == uzivatel.Id   //  - takhle to nefunguje
+            var insurances = from u in _context.Insurance
+                             where u.MyUser.Id == uzivatel.Id
                              select u; 
 
             return View(insurances);
@@ -66,6 +65,7 @@ namespace InsurenceWebApp.Controllers
             if (User.Identity?.Name != null)
             {
                 var uzivatel = _context.MyUser?.Single(item => item.Email == User.Identity.Name);
+
                 if (uzivatel?.Name.Length <= 1)
                 {
                     return RedirectToAction("Edit", "MyUser", new { uzivatel.Id });
@@ -84,6 +84,7 @@ namespace InsurenceWebApp.Controllers
             if (User.Identity?.Name != null)
             {
                 var uzivatel = _context.MyUser?.Single(item => item.Email == User.Identity.Name);
+
                 if (uzivatel?.Name.Length <= 1)
                 {
                     return RedirectToAction("Edit", "MyUser", new { uzivatel.Id });
@@ -101,6 +102,7 @@ namespace InsurenceWebApp.Controllers
             if (User.Identity?.Name != null)
             {
                 var uzivatel = _context.MyUser?.Single(item => item.Email == User.Identity.Name);
+
                 if (uzivatel?.Name.Length <= 1)
                 {
                     return RedirectToAction("Edit", "MyUser", new { uzivatel.Id });

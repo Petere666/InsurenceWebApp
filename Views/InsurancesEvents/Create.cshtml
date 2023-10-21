@@ -1,47 +1,51 @@
 ﻿@model InsurenceWebApp.Models.InsurancesEvents
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Nová Událost";
 }
 
-<h1>Create</h1>
+<h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Nová pojistná událost</h1>
 
-<h4>InsurancesEvents</h4>
+
+<h4 class="text-primary">Vyplňte prosím údaje o události</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 d-1">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ContractNumber" class="control-label"></label>
-                <input asp-for="ContractNumber" class="form-control" />
-                <span asp-validation-for="ContractNumber" class="text-danger"></span>
+            <input type="hidden" asp-for="Id" value="@ViewBag.EventNumber" />
+            <div class="input-group mb-3">
+                <label asp-for="EventNumber" class="input-group-text" for="inputGroupSelect01">Číslo a typ smlouvy</label>
+                <select asp-for="InsurancesId" class="form-select">
+                    @foreach (var item in ViewBag.Insurance)
+                    {
+                        <option asp-for="InsurancesId" value="@item.Id">@item.ContractNumber / @item.ContractType</option>
+                    }
+                </select>
+                @*<span asp-validation-for="ContractNumber" class="text-danger"></span>*@
             </div>
             <div class="form-group">
-                <label asp-for="EventNumber" class="control-label"></label>
-                <input asp-for="EventNumber" class="form-control" />
+                <label asp-for="EventNumber" class="control-label">Číslo události</label>
+                <input asp-for="EventNumber" class="form-control d-flex" type="number" value="@ViewBag.EventNumber" readonly/>
                 <span asp-validation-for="EventNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DamageAmount" class="control-label"></label>
+                <label asp-for="DamageAmount" class="control-label">Výše škody</label>
                 <input asp-for="DamageAmount" class="form-control" />
                 <span asp-validation-for="DamageAmount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DamageDescription" class="control-label"></label>
+                <label asp-for="DamageDescription" class="control-label">Popis škody</label>
                 <input asp-for="DamageDescription" class="form-control" />
                 <span asp-validation-for="DamageDescription" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group mt-3">
+                <input type="submit" value="Odeslat událost" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

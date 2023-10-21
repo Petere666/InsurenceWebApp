@@ -13,11 +13,6 @@ namespace InsurenceWebApp.Models
 
         public MyUser? MyUser { get; set; }
 
-        public Insurance()
-        {
-            MyEvents = new List<InsurancesEvents>();
-        }
-
-        public ICollection<InsurancesEvents> MyEvents { get; set; }
+        public ICollection<InsurancesEvents>? MyEvents { get; set; }
     }
 }

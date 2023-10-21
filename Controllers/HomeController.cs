@@ -39,7 +39,6 @@ namespace InsurenceWebApp.Controllers
             return View();
         }
 
-
         public IActionResult PojisteniCestovni()
         {
             return View();

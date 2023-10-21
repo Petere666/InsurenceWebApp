@@ -1,6 +1,54 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+<h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Hlášení pojistné události</h1>
 
-<partial name="/Views/InsurancesEvents/Details.cshtml" />
+<div class="row pt-4 pb-5  border-bottom border-2 border-dark mb-5">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title text-center fs-3">Asistenční služba</h5>
+                <p class="card-text text-center fs-3 border-danger border-1 border-top border-bottom">Volejte na číslo: 111 222 333</p>
+                <p class="fs-4 text-center">V provozu NONSTOP</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 ">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title text-center fs-3">Zákaznická linka</h5>
+                <p class="card-text text-center fs-3 border-secondary border-1 border-top border-bottom">Volejte na číslo: 444 555 666</p>
+                <p class="fs-4 text-center">Pracovní dny od 8 do 18 hod.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="col-sm-12 border-bottom border-2 border-dark  pb-5">
+        <div class="card h-100 w-100 text-center">
+            <div class="card-body align-content-center">
+                <h5 class="card-title text-center fs-3 ">Pro nahlášení škodné události online využijte následující odkaz</h5>
+                <a class="btn btn-primary m-2" asp-controller="InsurancesEvents" asp-action="Create" asp-route-id="@User.Identity?.Name">Nahlášení události</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-sm-12 border-bottom border-2 border-dark  pb-5">
+        <div class="card h-100 w-100 text-center">
+            <div class="card-body align-content-center">
+                <h5 class="card-title text-center fs-3 ">Pro nahlášení škodné události můžete po přihlášení využít náš online formulář</h5>
+                <a class="btn btn-outline-primary mb-1 mb-sm-0 mt-2 mt-sm-0" role="button" asp-area="" asp-controller="Account" asp-action="Register">Registrovat</a>
+                <a class="btn btn-outline-primary mb-1 mb-sm-0 mt-2 mt-sm-0" role="button" asp-area="" asp-controller="Account" asp-action="Login">Přihlásit</a>
+            </div>
+        </div>
+    </div>
+}

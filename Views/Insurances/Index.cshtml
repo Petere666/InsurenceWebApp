@@ -7,17 +7,17 @@
 <h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Soupis pojistných smluv</h1>
 
 
-<table class="table table-hover">
+<table class="table table-hover border-3 border-top border-start border-bottom border-end">
     <thead>
         <tr>
-            <th scope ="col" class="col-2">
-                @Html.DisplayNameFor(model => model.ContractType)
+            <th scope ="col" class="col-2 border-1">
+                <h5 class="text-primary">Typ smlouvy</h5>        @*@Html.DisplayNameFor(model => model.ContractType)*@
             </th>
-            <th scope="col" class="col-2">
-                @Html.DisplayNameFor(model => model.ContractNumber)
+            <th scope="col" class="col-2 border-1">
+                <h5 class="text-primary">Číslo smlouvy</h5>      @*@Html.DisplayNameFor(model => model.ContractNumber)*@
             </th>
-            <th scope="col" class="col-2">
-                @Html.DisplayNameFor(model => model.MonthPayment)
+            <th scope="col" class="col-2 border-1">
+                <h5 class="text-primary">Mesíční platby</h5>     @*@Html.DisplayNameFor(model => model.MonthPayment)*@
             </th>
             <th></th>
         </tr>
@@ -25,22 +25,22 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <th scope="row">
+            <th scope="row" class="border-1">
                 @Html.DisplayFor(modelItem => item.ContractType)
             </th>
-            <td>
+            <td class="border-1">
                 @Html.DisplayFor(modelItem => item.ContractNumber)
             </td>
-            <td>
+            <td class="border-1">
                 @Html.DisplayFor(modelItem => item.MonthPayment)
             </td>
             <td class="col-6">
-                <a class="btn btn-primary me-3" asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
-                <a class="btn btn-primary me-3" asp-action="Details" asp-route-id="@item.Id">Details</a> 
-                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-primary me-3 ms-3" asp-action="Edit" asp-route-id="@item.Id">Změnit podmínky</a> 
+                <a class="btn btn-primary me-3" asp-action="Details" asp-route-id="@item.Id">Detaily</a> 
+                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.Id">Ukončit pojištění</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-<a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="ClientZone">Back</a>
+<a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="ClientZone">Zpět</a>

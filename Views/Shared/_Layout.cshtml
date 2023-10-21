@@ -7,10 +7,19 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/InsurenceWebApp.styles.css" asp-append-version="true" />
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }</style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white  mb-0">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white mb-0">
             <div class="container-fluid">
                 <div class="d-flex">
                     <a class="navbar-brand text-primary" asp-area="" asp-controller="Home" asp-action="Index">

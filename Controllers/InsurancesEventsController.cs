@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InsurenceWebApp.Data;
 using InsurenceWebApp.Models;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.Extensions.Logging;
+using SQLitePCL;
 
 namespace InsurenceWebApp.Controllers
 {
@@ -22,9 +25,62 @@ namespace InsurenceWebApp.Controllers
         // GET: InsurancesEvents
         public async Task<IActionResult> Index()
         {
-              return _context.InsurancesEvents != null ? 
-                          View(await _context.InsurancesEvents.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.InsurancesEvents'  is null.");
+            var uzivatel = await _context.MyUser.SingleAsync(item => item.Email == User.Identity.Name);
+
+            var myinsurances = (from u in _context.Insurance
+                               where u.MyUser.Id == uzivatel.Id
+                               select u.Id).ToList();
+
+            var myEvents = from e in _context.InsurancesEvents
+                           where myinsurances.Contains(e.InsurancesId)
+                           select e;
+
+            //ViewBag.Event = myEvents;
+
+            return View(myEvents);
+
+            //var filterEventAndInsurance = _context.InsurancesEvents.IntersectBy(_context.Insurance.Where(i=>i.MyUser.Id==uzivatel.Id),e => e.Insurance);
+
+            //ViewBag.Event = filterEventAndInsurance;
+
+            //var insurances = (from u in _context.Insurance
+            //                 where u.MyUser.Id == uzivatel.Id
+            //                 select u.MyEvents).ToList();
+
+            //var myEvents = _context.InsurancesEvents.Where(e=>insurances.Contains(e.Insurance)).ToList();
+
+            //InsurancesEvents SelectedInsurancesEvents = _context.InsurancesEvents.Include()
+
+
+
+            //List<InsurancesEvents> myEvents = new List<InsurancesEvents>();
+
+            //foreach(var insurance in insurances)
+            //{
+            //    var oneEvent = from e in _context.InsurancesEvents
+            //                   where e.InsurancesId == insurance
+            //                   select e;
+            //    myEvents.Add(oneEvent);
+            //}
+
+            //var myEvents = from e in _context.InsurancesEvents
+            //               where e.InsurancesId == (_context.Insurance.FirstOrDefault(item => item.Id == uzivatel.Id))
+            //               select e;
+
+
+
+            //var myEvents = await _context.InsurancesEvents.FirstOrDefaultAsync(item => item.InsurancesId == insurances).ToList();
+
+            //insurances.ToList();
+
+            //var myEvents = from e in _context.InsurancesEvents
+            //               where e.InsurancesId == insurances
+            //               select e;
+
+            //return _context.InsurancesEvents != null ?
+            //              View(await _context.InsurancesEvents.ToListAsync()) :
+            //              Problem("Entity set 'ApplicationDbContext.InsurancesEvents'  is null.");
+
         }
 
         // GET: InsurancesEvents/Details/5
@@ -53,23 +109,39 @@ namespace InsurenceWebApp.Controllers
         //
 
         // GET: InsurancesEvents/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var uzivatel = await _context.MyUser.SingleAsync(item => item.Email == User.Identity.Name);
+
+            var insurances = from u in _context.Insurance
+                             where u.MyUser.Id == uzivatel.Id
+                             select u;
+
+            var eventNumber = _context.InsurancesEvents?.Count(m => m.Id != 0);
+
+            ViewBag.EventNumber = eventNumber + 1;
+            ViewBag.Insurance = insurances;
+            
             return View();
         }
 
         // POST: InsurancesEvents/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // it was useing user email as id, so i put event number as id and now its table generating proper id, dont know why
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ContractNumber,EventNumber,DamageAmount,DamageDescription")] InsurancesEvents insurancesEvents)
+        public async Task<IActionResult> Create(InsurancesEvents model,[Bind("InsurancesId,EventNumber,DamageAmount,DamageDescription")] InsurancesEvents insurancesEvents)
         {
-            if (ModelState.IsValid)
+            var insurance = await _context.Insurance.FirstOrDefaultAsync(u => u.Id == model.InsurancesId);
+            insurancesEvents.ContractNumber = insurance.ContractNumber;
+            
+
+            if (ModelState.IsValid)   
             {
                 _context.Add(insurancesEvents);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(AccountController.ClientZone), "Account");
             }
             return View(insurancesEvents);
         }
