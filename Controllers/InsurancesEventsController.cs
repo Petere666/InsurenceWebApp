@@ -35,52 +35,7 @@ namespace InsurenceWebApp.Controllers
                            where myinsurances.Contains(e.InsurancesId)
                            select e;
 
-            //ViewBag.Event = myEvents;
-
             return View(myEvents);
-
-            //var filterEventAndInsurance = _context.InsurancesEvents.IntersectBy(_context.Insurance.Where(i=>i.MyUser.Id==uzivatel.Id),e => e.Insurance);
-
-            //ViewBag.Event = filterEventAndInsurance;
-
-            //var insurances = (from u in _context.Insurance
-            //                 where u.MyUser.Id == uzivatel.Id
-            //                 select u.MyEvents).ToList();
-
-            //var myEvents = _context.InsurancesEvents.Where(e=>insurances.Contains(e.Insurance)).ToList();
-
-            //InsurancesEvents SelectedInsurancesEvents = _context.InsurancesEvents.Include()
-
-
-
-            //List<InsurancesEvents> myEvents = new List<InsurancesEvents>();
-
-            //foreach(var insurance in insurances)
-            //{
-            //    var oneEvent = from e in _context.InsurancesEvents
-            //                   where e.InsurancesId == insurance
-            //                   select e;
-            //    myEvents.Add(oneEvent);
-            //}
-
-            //var myEvents = from e in _context.InsurancesEvents
-            //               where e.InsurancesId == (_context.Insurance.FirstOrDefault(item => item.Id == uzivatel.Id))
-            //               select e;
-
-
-
-            //var myEvents = await _context.InsurancesEvents.FirstOrDefaultAsync(item => item.InsurancesId == insurances).ToList();
-
-            //insurances.ToList();
-
-            //var myEvents = from e in _context.InsurancesEvents
-            //               where e.InsurancesId == insurances
-            //               select e;
-
-            //return _context.InsurancesEvents != null ?
-            //              View(await _context.InsurancesEvents.ToListAsync()) :
-            //              Problem("Entity set 'ApplicationDbContext.InsurancesEvents'  is null.");
-
         }
 
         // GET: InsurancesEvents/Details/5

@@ -7,7 +7,7 @@
 <h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Soupis pojistných smluv</h1>
 
 
-<h4>Insurances</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,39 +15,39 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="ContractType" class="control-label"></label>
+                <label asp-for="ContractType" class="control-label">Typ smlouvy</label>
                 <input asp-for="ContractType" class="form-control" readonly/>
                 <span asp-validation-for="ContractType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ContractNumber" class="control-label"></label>
-                <input asp-for="ContractNumber" class="form-control" />
+                <label asp-for="ContractNumber" class="control-label">Číslo smlouvy</label>
+                <input asp-for="ContractNumber" class="form-control" readonly/>
                 <span asp-validation-for="ContractNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MonthPayment" class="control-label"></label>
+                <label asp-for="MonthPayment" class="control-label">Mesíční platby</label>
                 <input asp-for="MonthPayment" class="form-control" />
                 <span asp-validation-for="MonthPayment" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Principal" class="control-label"></label>
+                <label asp-for="Principal" class="control-label">Jistina</label>
                 <input asp-for="Principal" class="form-control" />
                 <span asp-validation-for="Principal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Validity" class="control-label"></label>
+                <label asp-for="Validity" class="control-label">Platnost pojištění</label>
                 <input asp-for="Validity" class="form-control" />
                 <span asp-validation-for="Validity" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="form-group mt-3">
+                <input type="submit" value="Uložit" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary mt-3" asp-action="Index">Zpět na seznam</a>
 </div>
 
 @section Scripts {

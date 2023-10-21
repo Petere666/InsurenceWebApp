@@ -4,40 +4,38 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 class="text-primary text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-primary bg-gradient bg-opacity-10">Detail pojistné události</h1>
 
 <div>
-    <h4>InsurancesEvents</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContractNumber)
+        <dt class="col-sm-2 border-1 border-bottom border-end ">
+            <h5 class="text-primary">Číslo smlouvy</h5>
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContractNumber)
+        <dd class="col-sm-10 border-1 border-bottom ">
+            <h5 class="text-primary">@Html.DisplayFor(model => model.ContractNumber)</h5>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EventNumber)
+        <dt class="col-sm-2 border-1 border-bottom border-end ">
+            <h5 class="text-primary">Číslo pojistné události</h5>
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EventNumber)
+        <dd class="col-sm-10 border-1 border-bottom ">
+            <h5 class="text-primary">@Html.DisplayFor(model => model.EventNumber)</h5>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DamageAmount)
+        <dt class="col-sm-2 border-1 border-bottom border-end ">
+            <h5 class="text-primary">Velikost Škody</h5>
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DamageAmount)
+        <dd class="col-sm-10 border-1 border-bottom ">
+            <h5 class="text-primary">@Html.DisplayFor(model => model.DamageAmount)</h5>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DamageDescription)
+        <dt class="col-sm-2 border-1 border-bottom border-end ">
+            <h5 class="text-primary">Popis škodné události</h5>
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DamageDescription)
+        <dd class="col-sm-10 border-1 border-bottom ">
+            <h5 class="text-primary">@Html.DisplayFor(model => model.DamageDescription)</h5>
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-    @*<a class="nav-link text-dark" asp-controller="InsurancesEvents" asp-action="Edit">Edit</a>*@
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary me-3" asp-action="Edit" asp-route-id="@Model?.Id">Upravit</a>
+    <a class="btn btn-primary" asp-action="Index">Zpět na seznam</a>
 </div>
