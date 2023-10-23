@@ -54,8 +54,8 @@ namespace InsurenceWebApp.Controllers
 
         //
 
-        //pred vytvorenim zkontrolovat MyUsers vyplneni a dat mu to vyplnit nez ho pustim k vyvoreni Insurance
-        //prihlaseni kontroluji i na HTML strance, kda vracim jine prvky na stranku
+        //before create check fill all data and get user backto fill before he can create insurance
+        //checking it eve with login
 
         //
 

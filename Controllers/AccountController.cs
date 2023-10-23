@@ -32,7 +32,7 @@ namespace InsurenceWebApp.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
-        //prihlaseni uzivatele
+        //login of user
         
         public IActionResult Login(string? returnUrl = null)
         {
@@ -65,13 +65,13 @@ namespace InsurenceWebApp.Controllers
                 return View(model);
             }
 
-            // Pokud byly odeslány neplatné údaje, vrátíme uživatele k přihlašovacímu formuláři
+            // if will be send incorrect data, send back user to form
             return View(model);
         }
 
 
-        //registrace uzivatele
-        //podminky registrace v Program.cs
+        //registration of user
+        //conditions to registration in Program.cs
         //
         public IActionResult Register(string? returnUrl = null)
         {
@@ -95,12 +95,12 @@ namespace InsurenceWebApp.Controllers
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
 
-                    var tvujUser = new MyUser();
-                    tvujUser.Email = model.Email;
-                    _context.Add(tvujUser);
+                    var myUser = new MyUser();
+                    myUser.Email = model.Email;
+                    _context.Add(myUser);
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction("Edit", "MyUser", new { tvujUser.Id });
+                    return RedirectToAction("Edit", "MyUser", new { myUser.Id });
                 }
 
                 foreach (IdentityError error in result.Errors)

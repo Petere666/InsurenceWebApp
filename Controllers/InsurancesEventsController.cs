@@ -58,8 +58,7 @@ namespace InsurenceWebApp.Controllers
 
         //
 
-        //pridat kontrolu jestli existuje Insurance, mozne lze udelat na HTML
-        //
+        //without insurance user cannot create insurance event, becouse of missing select option
 
         //
 
@@ -83,7 +82,7 @@ namespace InsurenceWebApp.Controllers
         // POST: InsurancesEvents/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // it was useing user email as id, so i put event number as id and now its table generating proper id, dont know why
+        // it was useing user email as id for event, so i put event number as id and now its table generating proper id, dont know why
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(InsurancesEvents model,[Bind("InsurancesId,EventNumber,DamageAmount,DamageDescription")] InsurancesEvents insurancesEvents)
