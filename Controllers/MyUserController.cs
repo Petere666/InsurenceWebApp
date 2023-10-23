@@ -47,12 +47,16 @@ namespace InsurenceWebApp.Controllers
         
         //
 
-        //nepouzivat Create, bude vytvoren pri registraci, puoze ho nechat uzivatele editovat
+        //will be created with registration, only for admin use
 
         //
         // GET: Users/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var UserList = await _context.Users.ToListAsync();
+
+            ViewBag.UserList = UserList;
+
             return View();
         }
 
@@ -72,13 +76,8 @@ namespace InsurenceWebApp.Controllers
             return View(users);
         }
 
-        //
-
-        //po registraci dat uzivateli vypsat i MyUsers hodnoty
-        //osetrit aby bez vyplnenych hodnot se nemohl prihlasit, po prihlaseni zkontrolat vyplneni a pripadne mu to dat vyplnit
-        //kontrolovat vyplneni pri nove Insurence a InsurenceEvent
-
-        //
+        //after registration give user page for MyUser edit page
+        //controll fill data table of user and not let him pass it to creating insurance or insurance event
 
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)

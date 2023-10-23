@@ -158,7 +158,7 @@ namespace InsurenceWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurance)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ContractType,ContractNumber,MonthPayment,Principal,Validity")] Insurance insurance)
         {
             if (id != insurance.Id)
             {

@@ -1,6 +1,8 @@
 ﻿@model InsurenceWebApp.Models.MyUser
 
-<h1>Informace o pojistníkovi</h1>
+<h1 class="text-danger text-lg-center mt-4 pt-4 mb-4 pb-4 border-top border-bottom border-2 border-dark bg-secondary bg-gradient bg-opacity-10">Soupis pojištěnců</h1>
+
+<h4 class="text-danger text-lg-center">Lze přiřadit informace pouze k zaregistrovaným uživatelům</h4>
 
 <hr />
 <div class="row mb-5">
@@ -71,11 +73,15 @@
                        
             <div class="form-group mb-3">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" value="@User.Identity?.Name" disabled readonly />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <select asp-for="Email" class="form-select">
+                    @foreach (var item in ViewBag.UserList)
+                    {
+                        <option asp-for="Email" value="@item.Email">@item.Email</option>
+                    }
+                </select>
             </div>
             <div class="form-group mb-3">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Vytvořit" class="btn btn-primary" />
             </div>
         </form>
     </div>

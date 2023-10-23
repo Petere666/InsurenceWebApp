@@ -13,6 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="InsurancesId" />
             <div class="form-group">
                 <label asp-for="ContractNumber" class="control-label">Číslo a typ smlouvy</label>
                 <input asp-for="ContractNumber" class="form-control" readonly/>

@@ -26,7 +26,7 @@
         <div class="card h-100">
             <div class="card-body">
                 <h5 class="card-title">Informace o uživateli</h5>
-                <p class="card-text">Zde můžete změnit informace o Vás. Pokud si nebudete vědět rady volejte nši infoliku - 444 555 666</p>
+                <p class="card-text">Zde můžete změnit informace o Vás. Pokud si nebudete vědět rady volejte naši infoliku - 444 555 666</p>
                 <a class="dropdown-item text-primary" asp-area="" asp-controller="MyUser" asp-action="EditClient" asp-route-id="@ViewBag.MyUserId">Upravit uživatelské informace</a>
             </div>
         </div>
@@ -51,5 +51,17 @@
     </div>
 </div>
 
-
-
+@if (User.IsInRole(UsersRoler.Admin))
+{
+    <div class="row pt-4 pb-5  border-bottom border-2 border-red">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Soupis uživatelů</h5>
+                    <p class="card-text">Možnost upravit informace o uživatelích</p>
+                    <a class="dropdown-item text-danger" asp-area="" asp-controller="MyUser" asp-action="Index" >Správa uživatelů</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
